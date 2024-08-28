@@ -41,7 +41,7 @@ vim rolebinding.yaml
 kubectl apply -f role.yaml
 kubectl apply -f rolebinding.yaml 
 ```
-### make .kube/config file and copy on the path of your kuber
+### make .kube/config file and copy on the path of your kuber path and test Authentication:
 ```yml
 su majid
 mkdir .kube && vi .kube/config
