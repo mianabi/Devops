@@ -85,4 +85,23 @@ Finally, enable the kubelet service on both systems so we can start it.
 ```yml
 sudo systemctl enable kubelet
 ```
+### 3. Run the following command on the master node to allow Kubernetes to fetch the required images before cluster initialization:
+```yml
+sudo kubeadm config images pull
+```
+### 3-1. Initialize the cluster
+```yml
+kubeadm init --control-plane-endpoint "192.168.1.40:6443" --pod-network-cidr=10.244.0.0/16 --upload-certs
+```
+To start using your cluster, you need to run the following as a regular user:
+```yml
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+Alternatively, if you are the root user, you can run:
+```yml
+export KUBECONFIG=/etc/kubernetes/admin.conf
+```
+
 
