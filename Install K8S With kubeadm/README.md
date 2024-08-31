@@ -99,9 +99,23 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
+### At the end of the installation, the master and worker nodes are given to the cluster, which is better to keep them somewhere.
+With the following commands, we can view the status of cluster nodes and pods:
+```yml
+kubectl get no
+kubectl get po -A
+```
 Alternatively, if you are the root user, you can run:
 ```yml
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
+### Important note:
+### Keep in mind that it is necessary to determine and install the cluster network type, and without installing the cluster network, it will not start working and the pods will not be in Running mode, and to determine the Kubernetes cluster network type, we can use flannel or calico:
+### 4- Install Flannel
+```yml
+kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
+```
+
+
 
 
