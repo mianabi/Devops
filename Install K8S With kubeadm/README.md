@@ -115,7 +115,7 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 ```yml
 kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
 ```
-
+After installing the Flannel network, pods is in running mode and the cluster is ready for service.
 
 
 
