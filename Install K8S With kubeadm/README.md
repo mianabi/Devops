@@ -51,5 +51,38 @@ Finally, to apply these changes, we need to restart containerd.
 sudo systemctl restart containerd
 ```
 
-
+### 2- With our container runtime installed and configured, we are ready to install Kubernetes.
+Add the repository key and the repository.
+```yml
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+### 2-1. Update your system and install the 3 Kubernetes modules.
+```yml
+sudo apt update -y
+sudo apt install -y kubelet kubeadm kubectl
+```
+### 2-2. Set the appropriate hostname for each machine.
+```yml
+sudo hostnamectl set-hostname "master-node"
+exec bash
+```
+### 2-3. To allow kubelet to work properly, we need to disable swap on both machines.
+```yml
+sudo swapoff –a
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+```
+or Open the /etc/fstab ﬁle with a text editor. You can use nano, vim, or any other text editor you are comfortable with. For example:
+```yml
+sudo vim /etc/fstab
+```
+Look for the line that references the swap file. It will usually look something like this:
+```yml
+/swapfile none swap sw 0 0
+```
+Then Reboot the system.
+Finally, enable the kubelet service on both systems so we can start it.
+```yml
+sudo systemctl enable kubelet
+```
 
