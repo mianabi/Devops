@@ -1,5 +1,9 @@
 ### Create user and it's Certs that can access to your K8S cluster
 
+Role-based access control (RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within your organization
+
+RBAC authorization uses the rbac.authorization.k8s.io API group to drive authorization decisions
+
 ```yml
 useradd majid && cd /home/majid
 
